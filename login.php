@@ -1,27 +1,35 @@
-<?php include 'config.php';
+<?php 
+session_start();
+include 'config.php';
 
-$username = $_POST['Username'];
-$password = $_POST['Password'];
+    if(!isset($_POST)){
 
-$sql = "SELECT * FROM users WHERE name = '$username' and password = '$password'";
+        die;
+    }
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
 
-$result = mysqli_query($con,$sql);
+    $sql = "SELECT * FROM users WHERE name = '$username' and password = '$password'";
 
-$row = mysqli_fetch_assoc($result);
+    $result = mysqli_query($con,$sql);
 
-if( $row['name'] == $username && $row['password'] == $password ){
-    echo "Welcome".$row['name'];
-    header('location: home.php');
-}
-else{
-    echo "Failed to login";
-}
+    $row = mysqli_fetch_assoc($result);
 
-// if (isset($_POST['log'])){
-//     header('location: home.php');
-// }
+    if( $row['name'] == $username && $row['password'] == $password ){
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['user_name'] = $row['name'];
 
-if (isset($_POST['reg'])){
-    header('location: registration.php');
-}
+        header('location: hhome.php');
+    }
+    else{
+        echo "Failed to login";
+    }
+
+    // if (isset($_POST['log'])){
+    //     header('location: home.php');
+    // }
+
+    // if (isset($_POST['reg'])){
+    //     header('location: registration.php');
+    // }
 ?>

@@ -1,4 +1,10 @@
-<?php include 'config.php'; ?>
+<?php 
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header('Location: index.php');
+    die;
+}
+include 'config.php'; ?>
 <html>
 <!DOCTYPE html>
 <body>
@@ -19,9 +25,10 @@ while($row = mysqli_fetch_assoc($result))
 <lebel>Amount</lebel>
 <input type = "text" name = "amount" value = "300">
 <lebel>Date</lebel>
-<input type = "text" name = "date">
+<input type = "date" name = "date">
 <input type = "submit" name = "submit" value = "SUBMIT">
 </form>
+<a href="logout.php">Logout</a>
 
 
 </body>

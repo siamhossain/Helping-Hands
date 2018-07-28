@@ -9,11 +9,13 @@ $sql = "INSERT INTO users (name, password, email, phone) VALUES ('$name', '$pass
 if (!mysqli_query($con, $sql))
 {
     echo"Not inserted";
+    header ("refresh:3; url=index.php" );
 }
 else{
     echo"Inserted";
+    header ("Location: hhome.php" );
 }
-header ("refresh:3; url=index.php" );
+
 
 
 ?>

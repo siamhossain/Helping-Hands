@@ -2,7 +2,7 @@
 
 $username = $_POST['username'];
 $amount = $_POST['amount'];
-$date = $_POST['date'];
+$date = $_POST['Text'];
 
 $sql = "INSERT INTO details (username, amount, date) VALUES ('$username', '$amount', '$date')";
 if (!mysqli_query($con, $sql))
